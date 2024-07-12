@@ -1,0 +1,47 @@
+package NumberHunter;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class TaskiNumberGame {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		  Scanner scanner = new Scanner(System.in);
+	        Random random = new Random();
+
+	        // Range for the random number
+	        int rangeStart = 1;
+	        int rangeEnd = 100;
+
+	        // Number of attempts allowed
+	        int maxAttempts = 10;
+
+	        // Initialize score and rounds
+	        int score = 0;
+	        int round = 0;
+
+	        // Start the game loop
+	        char playAgain = 'y';
+	        while (playAgain == 'y') {
+	            int randomNumber = random.nextInt(rangeEnd - rangeStart + 1) + rangeStart;
+	            int attempts = 0;
+	            boolean correctGuess = false;
+
+	            System.out.println("Round " + (round + 1) + ": Guess the number between " + rangeStart + " and " + rangeEnd);
+
+	            while (attempts < maxAttempts && !correctGuess) {
+	                System.out.print("Enter your guess: ");
+	                int userGuess = scanner.nextInt();
+	                attempts++;
+
+	                if (userGuess == randomNumber) {
+	                    System.out.println("Correct! You guessed the number in " + attempts + " attempts.");
+	                    correctGuess = true;
+	                    score += (maxAttempts - attempts + 1); // Score based on the number of attempts remaining
+	                } else if (userGuess < randomNumber) {
+	                    System.out.println("Too low. Try again.");
+	                } else {
+	                    System.out.println("Too high. Try again.");
+	                }
+	            }
